@@ -1,0 +1,56 @@
+defmodule Assignfour do
+  def create_mingled(strone, strtwo) do
+    values = String.graphemes(strone)
+    suits = String.graphemes(strtwo)
+    out = ""
+    getconoutput(values, suits, out)
+  end
+
+  def getconoutput(a, b, out) do
+    cond do
+      Enum.count(a) != 0 and Enum.count(b) != 0 ->
+        out = out <> gethead(a) <> gethead(b)
+        getconoutput(gettail(a), gettail(b), out)
+
+      Enum.count(a) != 0 and Enum.count(b) == 0 ->
+        out = out <> gethead(a)
+        gct(gettail(a), out)
+
+      Enum.count(a) == 0 and Enum.count(b) != 0 ->
+        out = out <> gethead(b)
+        gct(gettail(b), out)
+
+      true ->
+        out
+    end
+  end
+
+  def gct(a, out) do
+    cond do
+      Enum.count(a) != 0 ->
+        out = out <> gethead(a)
+        gct(gettail(a), out)
+
+      true ->
+        out
+    end
+  end
+
+  def gethead(l) do
+    count = Enum.count(l)
+
+    if count > 0 do
+      [head | _tail] = l
+      head
+    end
+  end
+
+  def gettail(l) do
+    count = Enum.count(l)
+
+    if count > 0 do
+      [_head | tail] = l
+      tail
+    end
+  end
+end
