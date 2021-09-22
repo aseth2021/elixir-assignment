@@ -1,0 +1,33 @@
+defmodule Assigntwo do
+  @moduledoc """
+  Documentation for `Assigntwo`.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Assigntwo.hello()
+      :world
+
+  """
+  def check_occur(val) do
+    val = String.graphemes(val)
+    normalbrackets = checknbrackets(val, "(", ")")
+    curlybrackets = checknbrackets(val, "{", "}")
+    squarebrackets = checknbrackets(val, "[", "]")
+    normalbrackets and curlybrackets and squarebrackets
+  end
+
+  def checknbrackets(val, a, b) do
+    open = Enum.count(val, &(&1 == a))
+    close = Enum.count(val, &(&1 == b))
+
+    if open == close do
+      true
+    else
+      false
+    end
+  end
+end
