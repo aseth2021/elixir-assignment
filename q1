@@ -1,0 +1,36 @@
+defmodule Assignthree do
+  @moduledoc """
+  Documentation for `Assignthree`.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Assignthree.hello()
+      :world
+
+  """
+
+  def check(a, b) do
+    var = String.duplicate(a, b)
+
+    var
+    |> String.graphemes()
+    |> Enum.map(&String.to_integer/1)
+    |> getsum()
+  end
+
+  def getsum(var) do
+    sum = Enum.sum(var)
+    x = Integer.digits(sum)
+    countd = Enum.count(x)
+
+    if(countd == 1) do
+      sum
+    else
+      getsum(x)
+    end
+  end
+end
