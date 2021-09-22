@@ -1,0 +1,39 @@
+defmodule Assignone do
+  import Integer
+
+  @moduledoc """
+  Documentation for `Assignone`.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Assignone.hello()
+      :world
+
+  """
+  def swapstring(s) do
+    s
+    |> check_length()
+    |> String.graphemes()
+    |> Enum.chunk_every(2)
+    |> Enum.reduce(<<>>, fn [x, y], acc -> acc <> y <> x end)
+  end
+
+  def check_length(str) do
+    count = String.length(str)
+    ecount = count - 2
+
+    if count > 1 do
+      if Integer.is_even(count) do
+        str
+      else
+        String.slice(str, 0..ecount)
+      end
+    else
+      str = ""
+    end
+  end
+end
